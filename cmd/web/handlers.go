@@ -12,7 +12,8 @@ import (
 func (app *application) HelloWorld(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello, World"))
 }
-//TODO: change name of microservices.CheckIPAddress to clarify which is which?
+
+//TODO: Should I change name of microservices.CheckIPAddress to clarify which is which?
 func (app *application) CheckIPAddress(w http.ResponseWriter, r *http.Request) {
 	logger.Info.Println(r.Body)
 	decoder := json.NewDecoder(r.Body)
@@ -26,7 +27,7 @@ func (app *application) CheckIPAddress(w http.ResponseWriter, r *http.Request) {
 		logger.Error.Println(err)
 		http.Error(w, http.StatusText(404), http.StatusNotFound)
 	}
-	ok := microservice.VerifyIPAddress(data.IP, data.Whitelist)
+	ok := microservice.CheckIPAddress(data.IP, data.Whitelist)
 
 	w.Write([]byte(strconv.FormatBool(ok)))
 }
