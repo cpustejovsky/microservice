@@ -1,4 +1,4 @@
-package micrservice
+package main
 
 import "fmt"
 
