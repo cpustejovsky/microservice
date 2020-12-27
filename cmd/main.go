@@ -7,6 +7,9 @@ import (
 
 func main() {
 	logger.Info.Println("Hello, World!")
-	country := ip.FindCountryByIP("81.2.69.142")
+	country, err := ip.FindCountryByIP("81.2.69.1423")
+	if err != nil {
+		logger.Error.Fatal(err)
+	}
 	logger.Info.Println("COUNTRY:\t", country)
 }
