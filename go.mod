@@ -1,3 +1,3 @@
-module github.com/cpustejovsky/testmicroservice
+module github.com/cpustejovsky/microservice
 
 go 1.15
