@@ -10,6 +10,7 @@ func CheckIPAddress(ipaddr string, whitelist []string) bool {
 	country, err := ip.FindCountryByIP(ipaddr)
 	if err != nil {
 		logger.Error.Println(err)
+		return false
 	}
 	for _, v := range whitelist {
 		if v == country {
