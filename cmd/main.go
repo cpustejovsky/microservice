@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/cpustejovsky/microservice/logger"
 
 func main() {
-	fmt.Println("Hello, World!")
+	logger.Info.Println("Hello, World!")
 }
