@@ -1,6 +1,7 @@
 package microservice_test
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/cpustejovsky/microservice"
@@ -44,10 +45,20 @@ func TestCheckIPAddress(t *testing.T) {
 		}
 
 		want := false
-		got, err := microservice.CheckIPAddress("1", testWhiteList)
-		if err != nil {
-			t.Error(err)
-		}
+		got, _ := microservice.CheckIPAddress("1", testWhiteList)
 		test.Compare(t, got, want)
 	})
+	t.Run("Returns false when there is an error present", func(t *testing.T) {
+		testWhiteList := []string{
+			"United Kingdom",
+			"United States",
+			"Mexico",
+		}
+
+		_, err := microservice.CheckIPAddress("1", testWhiteList)
+		if err != nil {
+			test.Compare(t, err, errors.New("1 is an incorrectly formatted IP Address"))
+		}
+	})
+
 }
