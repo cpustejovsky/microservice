@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "google.golang.org/grpc/examples/route_guide/routeguide";
+option go_package = "github.com/cpustejovsky/microservice/whitelist";
 
 package whitelist;
 
@@ -19,5 +19,5 @@ message Input {
 message Output {
   bool WhiteListed = 1;
   repeated string Message = 2;
-  error Error = 3;
+  string Error = 3;
 }
