@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
 	"time"
+
+	"github.com/cpustejovsky/microservice/internal/logger"
 
 	pb "github.com/cpustejovsky/microservice/whitelist"
 	"google.golang.org/grpc"
@@ -15,14 +15,12 @@ const (
 )
 
 func main() {
-	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		logger.Error.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
 	c := pb.NewWhiteListClient(conn)
-	fmt.Println(c)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
@@ -36,9 +34,9 @@ func main() {
 	}
 	r, err := c.CheckIPAddress(ctx, &in)
 	if err != nil {
-		log.Fatalf("Could not verify if IP address is whitelisted: %v", err)
+		logger.Error.Fatalf("Could not verify if IP address is whitelisted: %v", err)
 	}
 	if r.GetWhiteListed() {
-		log.Printf("IP Address %v is whitelisted", in.IP)
+		logger.Info.Printf("IP Address %v is whitelisted", in.IP)
 	}
 }

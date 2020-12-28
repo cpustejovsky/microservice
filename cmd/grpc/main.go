@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"net"
 
 	"github.com/cpustejovsky/microservice"
@@ -37,11 +36,11 @@ func newServer() *WhiteListServer {
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		logger.Error.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
 	pb.RegisterWhiteListServer(s, &WhiteListServer{})
 	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+		logger.Error.Fatalf("failed to serve: %v", err)
 	}
 }
