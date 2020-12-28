@@ -6,9 +6,32 @@
 
 ## Usage
 
-* To use as HTTP server, run `go run ./cmd/http/`
-* To use as gRPC server, run `go run ./cmd/grpc/`
+### HTTP
 
+* To use as HTTP server, run `go run ./cmd/http/`
+* Create a POST request to `/api/checkip` with the following:
+    ```json
+    {
+    "ip":"<IP Address>",
+    "whitelist":["<Array of Countries>"]
+    }
+    ```
+
+
+### gRPC
+
+* To use as gRPC server, run `go run ./cmd/grpc/`
+* In your gRPC client, pass in the the following type of struct to `CheckIPAddress`:
+    ```go
+    var in pb.Input{
+      IP: "81.2.69.142", //IP Address
+      WhiteList: []string{ //List of Countries
+        "United Kingdom",
+        "United States",
+        "Mexico",
+      },
+    }
+    ```
 ## Testing
 
 Run tests with `go test ./...`
@@ -16,6 +39,7 @@ Run tests with `go test ./...`
 ## Next Steps
 
 * Confirm that API response is useful and sufficient for other service
+* Determine whether country codes would be preferable to English country names
 * Add more unit tests
 * Look into [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) to provide API in both gRPC and HTTP at the same time.
 * Determine better naming for Input and Output in `whitelist.proto`
