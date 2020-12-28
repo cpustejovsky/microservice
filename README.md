@@ -12,8 +12,8 @@
 * Create a POST request to `/api/checkip` with the following:
     ```json
     {
-    "ip":"<IP Address>",
-    "whitelist":["<Array of Countries>"]
+      "ip":"<IP Address>",
+      "whitelist":["<Array of Countries>"]
     }
     ```
 
