@@ -19,7 +19,6 @@ func main() {
 	flag.StringVar(&cfg.Addr, "addr", ":5000", "HTTP network address")
 	flag.Parse()
 
-	//TODO: DB Setup?
 	logger.Info.Println("Successfully connected to database!")
 
 	// Application and Server Initialization

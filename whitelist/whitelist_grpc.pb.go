@@ -17,7 +17,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WhiteListClient interface {
-	//TODO: better naming for Input and Output
 	CheckIPAddress(ctx context.Context, in *Input, opts ...grpc.CallOption) (*Output, error)
 }
 
@@ -42,7 +41,6 @@ func (c *whiteListClient) CheckIPAddress(ctx context.Context, in *Input, opts ..
 // All implementations must embed UnimplementedWhiteListServer
 // for forward compatibility
 type WhiteListServer interface {
-	//TODO: better naming for Input and Output
 	CheckIPAddress(context.Context, *Input) (*Output, error)
 	mustEmbedUnimplementedWhiteListServer()
 }

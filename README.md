@@ -15,6 +15,10 @@ Run tests with `go test ./...`
 
 ## Next Steps
 
-* Confirm API response is useful and sufficient for other service
+* Confirm that API response is useful and sufficient for other service
 * Add more unit tests
 * Look into [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) to provide API in both gRPC and HTTP at the same time.
+* Determine better naming for Input and Output in `whitelist.proto`
+* Connect `FindCountryByIP` to a live database
+* Determine what error to return is `json.Marshall` fails
+* Determine if I should Should I change name of `microservices.CheckIPAddress` to differentiate it from `app.CheckIPAddress`?

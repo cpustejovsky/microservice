@@ -9,7 +9,6 @@ import (
 
 //FindCountryByIP takes an IP address in the form of a string and returns the English name of the country that corresponds to the IP address and an error
 func FindCountryByIP(ipaddr string) (string, error) {
-	//TODO: connect to live DB
 	db, err := geoip2.Open("/home/cpustejovsky/development/microservice/internal/ip/GeoLite2-Country.mmdb")
 	if err != nil {
 		return "", err

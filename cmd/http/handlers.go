@@ -15,7 +15,6 @@ type FormData struct {
 	Whitelist []string `json:"whitelist"`
 }
 
-//TODO: best practice for microservice responses
 //Response represents the JSON data passed from the CheckIPAddress handler
 type Response struct {
 	WhiteListed bool   `json:"whitelisted"`
@@ -26,7 +25,6 @@ func (app *application) HelloWorld(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello, World"))
 }
 
-//TODO: Should I change name of microservices.CheckIPAddress to clarify which is which?
 func (app *application) CheckIPAddress(w http.ResponseWriter, r *http.Request) {
 	var data FormData
 	var msg bytes.Buffer
@@ -55,7 +53,6 @@ func (app *application) CheckIPAddress(w http.ResponseWriter, r *http.Request) {
 	bs, err := json.Marshal(res)
 	if err != nil {
 		logger.Error.Println(err)
-		//TODO: What error should be returned when json.Marshall fails?
 		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
 	}
 	w.Write(bs)

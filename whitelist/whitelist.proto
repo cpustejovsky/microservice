@@ -4,10 +4,8 @@ option go_package = "github.com/cpustejovsky/microservice/whitelist";
 
 package whitelist;
 
-// Interface exported by the server.
 service WhiteList {
 
-  //TODO: better naming for Input and Output
   rpc CheckIPAddress(Input) returns (Output) {}
 
 }
