@@ -17,8 +17,10 @@ func TestCheckIPAddress(t *testing.T) {
 		}
 
 		want := true
-		got := microservice.CheckIPAddress(testIPAddr, testWhiteList)
-
+		got, err := microservice.CheckIPAddress(testIPAddr, testWhiteList)
+		if err != nil {
+			t.Error(err)
+		}
 		test.Compare(t, got, want)
 	})
 	t.Run("Returns false when IP address is not in whitelist", func(t *testing.T) {
@@ -28,8 +30,10 @@ func TestCheckIPAddress(t *testing.T) {
 		}
 
 		want := false
-		got := microservice.CheckIPAddress(testIPAddr, testWhiteList)
-
+		got, err := microservice.CheckIPAddress(testIPAddr, testWhiteList)
+		if err != nil {
+			t.Error(err)
+		}
 		test.Compare(t, got, want)
 	})
 	t.Run("Returns false when there is an error present", func(t *testing.T) {
@@ -40,8 +44,10 @@ func TestCheckIPAddress(t *testing.T) {
 		}
 
 		want := false
-		got := microservice.CheckIPAddress("1", testWhiteList)
-
+		got, err := microservice.CheckIPAddress("1", testWhiteList)
+		if err != nil {
+			t.Error(err)
+		}
 		test.Compare(t, got, want)
 	})
 }
