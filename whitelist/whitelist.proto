@@ -18,5 +18,4 @@ message Input {
 
 message Output {
   bool WhiteListed = 1;
-  string Error = 2;
 }

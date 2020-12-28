@@ -2,18 +2,17 @@ package main
 
 import (
 	"context"
-	"flag"
-	"fmt"
 	"log"
 	"net"
 
 	"github.com/cpustejovsky/microservice"
+	"github.com/cpustejovsky/microservice/internal/logger"
 	pb "github.com/cpustejovsky/microservice/whitelist"
 	"google.golang.org/grpc"
 )
 
-var (
-	port = flag.Int("port", 10000, "The server port")
+const (
+	port = ":50051"
 )
 
 type WhiteListServer struct {
@@ -27,7 +26,6 @@ func (s *WhiteListServer) CheckIPAddress(ctx context.Context, Input *pb.Input) (
 	}
 	return &pb.Output{
 		WhiteListed: ok,
-		Error:       err.Error(),
 	}, nil
 }
 
@@ -37,13 +35,13 @@ func newServer() *WhiteListServer {
 }
 
 func main() {
-	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *port))
+	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	var opts []grpc.ServerOption
-	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterWhiteListServer(grpcServer, newServer())
-	grpcServer.Serve(lis)
+	s := grpc.NewServer()
+	pb.RegisterWhiteListServer(s, &WhiteListServer{})
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
