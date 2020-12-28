@@ -21,15 +21,11 @@
 ### gRPC
 
 * To use as gRPC server, run `go run ./cmd/grpc/`
-* In your gRPC client, pass in the the following type of struct to `CheckIPAddress`:
+* In your gRPC client, structure your IP address and list of countries to satisfy the `Input` type:
     ```go
-    var in pb.Input{
-      IP: "81.2.69.142", //IP Address
-      WhiteList: []string{ //List of Countries
-        "United Kingdom",
-        "United States",
-        "Mexico",
-      },
+    type Input struct {
+      IP        string   
+      WhiteList []string
     }
     ```
 ## Testing
