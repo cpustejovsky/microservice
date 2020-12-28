@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/examples/route_guide/routeguide";
+
+package whitelist;
+
+// Interface exported by the server.
+service WhiteList {
+
+  //TODO: better naming for Input and Output
+  rpc CheckIPAddress(Input) returns (Output) {}
+
+}
+message Input {
+  string IP = 1;
+  repeated string WhiteList = 2;
+}
+
+message Output {
+  bool WhiteListed = 1;
+  repeated string Message = 2;
+  error Error = 3;
+}
