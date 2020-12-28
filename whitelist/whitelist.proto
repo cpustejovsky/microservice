@@ -18,6 +18,5 @@ message Input {
 
 message Output {
   bool WhiteListed = 1;
-  repeated string Message = 2;
-  string Error = 3;
+  string Error = 2;
 }
