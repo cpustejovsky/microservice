@@ -7,7 +7,7 @@ import (
 	"net"
 
 	"github.com/cpustejovsky/microservice"
-	"github.com/cpustejovsky/microservice/internal/logger"
+	"github.com/cpustejovsky/microservice/pkg/logger"
 	pb "github.com/cpustejovsky/microservice/whitelist"
 	"google.golang.org/grpc"
 )
