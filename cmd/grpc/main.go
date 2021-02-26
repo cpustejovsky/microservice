@@ -7,7 +7,7 @@ import (
 	"net"
 
 	"github.com/cpustejovsky/microservice"
-	"github.com/cpustejovsky/microservice/pkg/logger"
+	"github.com/cpustejovsky/microservice/internal/logger"
 	pb "github.com/cpustejovsky/microservice/whitelist"
 	"google.golang.org/grpc"
 )
@@ -40,5 +40,8 @@ func main() {
 	pb.RegisterWhiteListServer(s, &WhiteListServer{})
 	if err := s.Serve(lis); err != nil {
 		logger.Error.Fatalf("failed to serve: %v", err)
+	} else {
+		logger.Info.Printf("listening on localhost:%d", *port)
 	}
 }
+
