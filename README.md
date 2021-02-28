@@ -41,4 +41,4 @@ Run tests with `go test ./...`
 * Look into [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) to provide API in both gRPC and HTTP at the same time.
 * Determine better naming for Input and Output in `whitelist.proto`
 * Determine what error to return is `json.Marshall` fails
-* Determine if I should Should I change name of `microservices.CheckIPAddress` to differentiate it from `app.CheckIPAddress`?
+* Determine if I should change name of `microservices.CheckIPAddress` to differentiate it from `app.CheckIPAddress`?
